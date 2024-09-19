@@ -13,6 +13,13 @@ export interface PostMutation {
   image: string | null;
 }
 
+
+export interface CommentMutation {
+  user: mongoose.Types.ObjectId | string;
+  post: mongoose.Types.ObjectId | string;
+  message: string;
+}
+
 export interface UserMethods {
   checkPassword(password: string): Promise<boolean>;
   generateToken(): void;
