@@ -1,5 +1,4 @@
 import express from 'express';
-import Post from '../models/Post';
 import Comment from '../models/Comment';
 import { CommentMutation } from '../types';
 import mongoose from 'mongoose';
@@ -13,7 +12,7 @@ commentsRouter.get('/', async (req, res, next) => {
     const post = req.query.post;
 
     if (!post || !mongoose.isValidObjectId(post)) {
-      return res.status(404).send({ error: 'Post not found!' });
+      return res.status(404).send({ error: 'The post ID does not match or is empty!' });
     }
 
     const comments = await Comment.find({ post }).populate('user', 'username');
@@ -28,7 +27,7 @@ commentsRouter.post('/', auth, async (req: RequestWithUser, res, next) => {
   try {
 
     if (!req.user || !mongoose.isValidObjectId(req.body.post)) {
-      return res.status(404).send({ error: 'User or Post are not found!' });
+      return res.status(404).send({ error: 'The User or Post was not found!' });
     }
 
     if (!req.body.message) {

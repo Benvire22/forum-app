@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Box, Button, TextField, Typography, Link, Alert } from '@mui/material';
+import { Avatar, Box, TextField, Typography, Link, Alert } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
@@ -10,7 +10,6 @@ import { LoginMutation } from '../../types';
 import { login } from './usersThunks';
 import { toast } from 'react-toastify';
 import { LoadingButton } from '@mui/lab';
-import SaveIcon from '@mui/icons-material/Save';
 
 const Login = () => {
   const dispatch = useAppDispatch();
