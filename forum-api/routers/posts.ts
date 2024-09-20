@@ -10,7 +10,7 @@ const postsRouter = express.Router();
 
 postsRouter.get('/', async (req, res, next) => {
    try {
-       const posts = await Post.find().populate('user', 'username');
+       const posts = await Post.find().populate('user', 'username').sort({createdAt: -1});
        return res.send(posts);
    } catch (e) {
        return next(e);
@@ -19,7 +19,7 @@ postsRouter.get('/', async (req, res, next) => {
 
 postsRouter.get('/:id', async (req, res, next) => {
     try {
-        const post = await Post.findById(req.params.id);
+        const post = await Post.findById(req.params.id).populate('user', 'username');
 
         if (!post) {
             return res.status(404).send({ error: 'Post not found' });
@@ -43,6 +43,7 @@ postsRouter.post('/', imagesUpload.single('image'), auth, async (req: RequestWit
             title: req.body.title,
             description: req.body.description || null,
             image: req.file ? req.file.filename : null,
+            createdAt: new Date(),
         };
 
         const post = new Post(PostMutation);

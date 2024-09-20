@@ -41,6 +41,10 @@ const PostSchema = new Schema<PostMutation>({
             message: 'Either image or description must be present!',
         },
     },
+    createdAt: {
+        type: Date,
+        required: true,
+    }
 });
 
 const Post = mongoose.model('Post', PostSchema);

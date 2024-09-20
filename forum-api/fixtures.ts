@@ -37,20 +37,24 @@ const run = async () => {
     title: 'Some user1 title',
     description: 'Вы знали об этом?',
     image: 'fixtures/post1-mem.jpg',
+    createdAt: new Date(),
   }, {
     user: user1,
     title: 'Some user1 title 2',
     description: 'Милоты вам в ленту',
     image: 'fixtures/post2-cat.jpg',
+    createdAt: new Date(),
   }, {
     user: user2,
     title: 'Some user2 title',
     description: 'Давайте поговорим о важном',
+    createdAt: new Date(),
   }, {
     user: user2,
     title: 'Some user2 title 2',
     description: 'Rocks',
     image: 'fixtures/post4-rock.jpg',
+    createdAt: new Date(),
   });
 
   await Comment.create({

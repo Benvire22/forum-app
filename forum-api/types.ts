@@ -11,6 +11,7 @@ export interface PostMutation {
   title: string;
   description: string | null;
   image: string | null;
+  createdAt: Date;
 }
 
 
