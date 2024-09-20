@@ -6,12 +6,17 @@ import App from './App';
 import { persitor, store } from './app/store';
 import theme from './theme';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
-    <PersistGate persistor={persitor} >
+    <PersistGate persistor={persitor}>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
+          <ToastContainer
+            position='bottom-right'
+          />
           <CssBaseline />
           <App />
         </ThemeProvider>

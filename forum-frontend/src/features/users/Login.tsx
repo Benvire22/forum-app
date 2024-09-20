@@ -4,14 +4,20 @@ import Grid from '@mui/material/Grid2';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { selectLoginError } from './usersSlice';
+import { selectLoginError, selectLoginLoading } from './usersSlice';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { LoginMutation } from '../../types';
 import { login } from './usersThunks';
+import { toast } from 'react-toastify';
+import { LoadingButton } from '@mui/lab';
+import SaveIcon from '@mui/icons-material/Save';
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const error = useAppSelector(selectLoginError);
   const navigate = useNavigate();
+  const loginLoading = useAppSelector(selectLoginLoading);
+
   const [state, setState] = useState<LoginMutation>({
     username: '',
     password: '',
@@ -29,9 +35,17 @@ const Login = () => {
     e.preventDefault();
     try {
       await dispatch(login(state)).unwrap();
-      navigate('/');
+      navigate(-1);
+
+      setState({
+        username: '',
+        password: '',
+      });
+
+      toast.success('You are logged in!');
     } catch (e) {
       console.error(e);
+      toast.error('Login error!');
     }
   };
 
@@ -47,49 +61,51 @@ const Login = () => {
       <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
         <LockOpenIcon />
       </Avatar>
-      <Typography component="h1" variant="h5">
+      <Typography component='h1' variant='h5'>
         Sign in
       </Typography>
       {error && (
-        <Alert severity="error" sx={{ mt: 3 }}>
+        <Alert severity='error' sx={{ mt: 3 }}>
           {error.error}
         </Alert>
       )}
-      <Box component="form" noValidate onSubmit={submitFormHandler} sx={{ mt: 3 }}>
-        <Grid container direction="column" spacing={2}>
+      <Box component='form' noValidate onSubmit={submitFormHandler} sx={{ mt: 3 }}>
+        <Grid container direction='column' spacing={2}>
           <Grid>
             <TextField
-              label="Username"
-              name="username"
+              label='Username'
+              name='username'
               value={state.username}
-              autoComplete="current-username"
+              autoComplete='current-username'
               onChange={inputChangeHandler}
               required
             />
           </Grid>
           <Grid>
             <TextField
-              type="password"
-              label="Password"
-              name="password"
+              type='password'
+              label='Password'
+              name='password'
               value={state.password}
-              autoComplete="current-password"
+              autoComplete='current-password'
               onChange={inputChangeHandler}
               required
             />
           </Grid>
         </Grid>
-        <Button
-          type="submit"
+        <LoadingButton
+          type='submit'
           fullWidth
-          variant="contained"
           sx={{ mt: 3, mb: 2 }}
-          color="primary"
-          onClick={submitFormHandler}
+          color='primary'
+          loading={loginLoading}
+          loadingPosition='start'
+          startIcon={<MeetingRoomIcon />}
+          variant='contained'
         >
-          Sign in
-        </Button>
-        <Link component={RouterLink} to={'/register'} variant="body2">
+          <span>Sign in</span>
+        </LoadingButton>
+        <Link component={RouterLink} to={'/register'} variant='body2'>
           Or sign up
         </Link>
       </Box>

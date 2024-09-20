@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import config from './config';
 import User from './models/User';
-import Post from "./models/Post";
-import Comment from "./models/Comment";
+import Post from './models/Post';
+import Comment from './models/Comment';
 
 const run = async () => {
   await mongoose.connect(config.database);
@@ -34,25 +34,25 @@ const run = async () => {
 
   const [post1, post2, post3, post4] = await Post.create({
     user: user1,
-    title: 'Some user1 title',
+    title: 'Экспертная экспертность',
     description: 'Вы знали об этом?',
     image: 'fixtures/post1-mem.jpg',
     createdAt: new Date('2024-09-20T15:23:14.509Z'),
   }, {
     user: user1,
-    title: 'Some user1 title 2',
+    title: 'КОТИКИ',
     description: 'Милоты вам в ленту',
     image: 'fixtures/post2-cat.jpg',
     createdAt: new Date('2024-09-20T21:23:14.509Z'),
   }, {
     user: user2,
-    title: 'Some user2 title',
-    description: 'Давайте поговорим о важном',
+    title: 'Время поговорить о важном',
+    description: 'А здесь армяне в нарды играют',
     createdAt: new Date('2024-09-20T11:23:14.509Z'),
   }, {
     user: user2,
-    title: 'Some user2 title 2',
-    description: 'Rocks',
+    title: 'Камни',
+    description: 'Камни',
     image: 'fixtures/post4-rock.jpg',
     createdAt: new Date('2024-09-20T10:27:09.870Z'),
   });
@@ -61,31 +61,31 @@ const run = async () => {
     user: user2,
     post: post1,
     message: 'Hello!',
-  },{
+  }, {
     user: user1,
     post: post1,
     message: 'Some time',
-  },{
+  }, {
     user: user1,
     post: post2,
     message: 'WoW!',
-  },{
+  }, {
     user: user2,
     post: post2,
     message: 'YES',
-  },{
+  }, {
     user: user1,
     post: post3,
     message: 'It is so weird',
-  },{
+  }, {
     user: user2,
     post: post3,
     message: 'No, not that',
-  },{
+  }, {
     user: user1,
     post: post4,
     message: 'Dafuk?!',
-  },{
+  }, {
     user: user2,
     post: post4,
     message: 'No comments',

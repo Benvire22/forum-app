@@ -3,8 +3,9 @@ import Grid from '@mui/material/Grid2';
 import { Button, Menu, MenuItem } from '@mui/material';
 import { User } from '../../types';
 import { NavLink } from 'react-router-dom';
-import {useAppDispatch} from "../../app/hooks";
-import {logout} from "../../features/users/usersThunks";
+import { useAppDispatch } from '../../app/hooks';
+import { logout } from '../../features/users/usersThunks';
+import { toast } from 'react-toastify';
 
 interface Props {
   user: User;
@@ -21,15 +22,16 @@ const UserMenu: React.FC<Props> = ({ user }) => {
   const handleLogout = () => {
     dispatch(logout());
     handleClose();
+    toast.warning('You are logged out!');
   };
 
   return (
     <Grid>
-      <Button color="inherit" onClick={handleClick}>
+      <Button color='inherit' sx={{ fontSize: 20 }} onClick={handleClick}>
         {user.username}
       </Button>
       <Menu open={isOpen} onClose={handleClose} anchorEl={anchorEl} keepMounted>
-        <MenuItem onClick={handleClose} component={NavLink} to="/add-new">
+        <MenuItem onClick={handleClose} component={NavLink} to='/add-new'>
           add new Post
         </MenuItem>
         <MenuItem>My account</MenuItem>

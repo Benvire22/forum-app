@@ -1,4 +1,3 @@
-
 export interface Post {
   _id: string;
   title: string
@@ -14,7 +13,7 @@ export interface Post {
 export interface PostMutation {
   title: string
   description: string;
-  image: string | null;
+  image: File | null;
 }
 
 export interface PostComment {

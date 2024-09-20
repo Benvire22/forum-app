@@ -2,8 +2,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { usersReducer } from '../features/users/usersSlice';
 import { persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore } from 'redux-persist';
-import {postsReducer} from "../features/posts/postsSlice";
-import {commentsReducer} from "../features/comments/commentsSlice";
+import { postsReducer } from '../features/posts/postsSlice';
+import { commentsReducer } from '../features/comments/commentsSlice';
 
 const usersPersistConfig = {
   key: 'forum:users',
@@ -23,7 +23,7 @@ export const store = configureStore({
     return getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      }
+      },
     });
   },
 });

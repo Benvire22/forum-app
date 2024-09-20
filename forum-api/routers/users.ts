@@ -26,16 +26,16 @@ usersRouter.post('/', async (req, res, next) => {
 
 usersRouter.post('/sessions', async (req, res, next) => {
   try {
-    const user = await User.findOne({username: req.body.username});
+    const user = await User.findOne({ username: req.body.username });
 
     if (!user) {
-      return res.status(400).send({error: 'Username not found!'});
+      return res.status(400).send({ error: 'Username not found!' });
     }
 
     const isMatch = await user.checkPassword(req.body.password);
 
     if (!isMatch) {
-      return res.status(400).send({error: 'Password is wrong!'});
+      return res.status(400).send({ error: 'Password is wrong!' });
     }
 
     user.generateToken();
@@ -57,7 +57,7 @@ usersRouter.delete('/sessions', async (req, res, next) => {
 
     if (!token) return res.status(204).send();
 
-    const user = await User.findOne({token});
+    const user = await User.findOne({ token });
 
     if (!user) return res.status(204).send();
 
