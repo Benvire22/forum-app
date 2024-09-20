@@ -7,8 +7,7 @@ import {Link} from "react-router-dom";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import dayjs from "dayjs";
 
-
-const ImageCardMedia = styled(CardMedia)({
+ const ImageCardMedia = styled(CardMedia)({
     height: '200px',
     width: '200px',
 });

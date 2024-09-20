@@ -17,7 +17,7 @@ const NewPost = () => {
   const onFormSubmit = async (postMutation: PostMutation) => {
     try {
       await dispatch(createPost(postMutation)).unwrap();
-      navigate('/');
+      navigate('/login');
     } catch (error) {
       console.error(error);
     }

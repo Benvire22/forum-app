@@ -5,6 +5,7 @@ import Register from './features/users/Register';
 import Login from './features/users/Login';
 import Posts from "./features/posts/Posts";
 import NewPost from "./features/posts/NewPost";
+import OnePost from "./features/posts/OnePost";
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
       <Container maxWidth="xl" component="main">
         <Routes>
           <Route path="/" element={<Posts />} />
-          <Route path="/posts/add-new" element={<NewPost />} />
+          <Route path="/add-new" element={<NewPost />} />
+          <Route path="/posts/:id" element={<OnePost />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<Typography variant="h1">Not found</Typography>} />
