@@ -17,6 +17,21 @@ export interface PostMutation {
   image: string | null;
 }
 
+export interface PostComment {
+  _id: string;
+  user: {
+    _id: string;
+    username: string;
+  }
+  post: string;
+  message: string;
+}
+
+export interface PostCommentMutation {
+  message: string;
+  post: string;
+}
+
 export interface RegisterMutation {
   username: string;
   password: string;

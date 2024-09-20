@@ -55,7 +55,7 @@ const PostForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
       </Grid>
       <Grid>
         <TextField
-          required={!!(state.description || state.image)}
+          required={!!(state.image || state.description)}
           multiline
           minRows={3}
           label="Description"

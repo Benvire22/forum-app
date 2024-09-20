@@ -16,7 +16,7 @@ commentsRouter.get('/', async (req, res, next) => {
             return res.status(404).send({error: 'Post not found!'})
         }
 
-        const comments = await Post.find({ post }).populate('user', 'username');
+        const comments = await Comment.find({ post }).populate('user', 'username');
 
         return res.send(comments);
     } catch (e) {
@@ -27,8 +27,8 @@ commentsRouter.get('/', async (req, res, next) => {
 commentsRouter.post('/', auth, async (req: RequestWithUser, res, next) => {
     try {
 
-        if (!req.user || req.params.post) {
-            return res.status(401).send({error: 'User or Post are not found!'});
+        if (!req.user || !mongoose.isValidObjectId(req.body.post)) {
+            return res.status(404).send({error: 'User or Post are not found!'});
         }
 
         if (!req.body.message) {

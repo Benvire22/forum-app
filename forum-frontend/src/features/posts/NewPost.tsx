@@ -17,7 +17,7 @@ const NewPost = () => {
   const onFormSubmit = async (postMutation: PostMutation) => {
     try {
       await dispatch(createPost(postMutation)).unwrap();
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
@@ -26,7 +26,7 @@ const NewPost = () => {
   return (
     <>
       {!user ? (
-          <Navigate to="/" />
+          <Navigate to="/login" />
       ) : (
         <>
           <Typography variant="h4" sx={{ mb: 2 }}>New Post</Typography>

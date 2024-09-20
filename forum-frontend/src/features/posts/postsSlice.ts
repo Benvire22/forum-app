@@ -27,11 +27,7 @@ const initialState: PostsState = {
 export const postsSlice = createSlice({
     name: 'posts',
     initialState,
-    reducers: {
-        unsetPost: (state) => {
-            state.post = null;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchPosts.pending, (state) => {
             state.errorLoadingPost = false;
@@ -45,6 +41,7 @@ export const postsSlice = createSlice({
         });
 
         builder.addCase(fetchOnePost.pending, (state) => {
+            state.onePost = null;
             state.errorLoadingOnePost = false;
             state.loadingOnePost = true;
         }).addCase(fetchOnePost.fulfilled, (state, {payload: post}) => {
