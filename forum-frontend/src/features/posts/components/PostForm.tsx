@@ -44,11 +44,18 @@ const PostForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
   return (
     <Grid container direction="column" spacing={2} component="form" onSubmit={submitFormHandler}>
       <Grid>
-        <TextField required label="Title" id="title" name="title" value={state.title} onChange={inputChangeHandler} />
+        <TextField
+            required
+            label="Title"
+            id="title"
+            name="title"
+            value={state.title}
+            onChange={inputChangeHandler}
+        />
       </Grid>
       <Grid>
         <TextField
-          required
+          required={!!(state.description || state.image)}
           multiline
           minRows={3}
           label="Description"
@@ -59,7 +66,12 @@ const PostForm: React.FC<Props> = ({ onSubmit, isLoading }) => {
         />
       </Grid>
       <Grid>
-        <FileInput label="Image" name="image" onChange={fileInputChangeHandler} />
+        <FileInput
+            required={!!(state.description || state.image)}
+            label="Image"
+            name="image"
+            onChange={fileInputChangeHandler}
+        />
       </Grid>
       <Grid>
         <LoadingButton

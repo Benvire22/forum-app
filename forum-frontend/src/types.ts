@@ -8,6 +8,7 @@ export interface Post {
   }
   description: string;
   image: string | null;
+  createdAt: Date;
 }
 
 export interface PostMutation {

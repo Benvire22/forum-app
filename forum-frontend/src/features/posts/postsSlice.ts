@@ -1,5 +1,6 @@
 import {Post} from "../../types";
 import { createSlice} from "@reduxjs/toolkit";
+import {createPost, fetchOnePost, fetchPosts} from "./postsThunks";
 
 export interface PostsState {
     posts: Post[];
@@ -32,7 +33,37 @@ export const postsSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
+        builder.addCase(fetchPosts.pending, (state) => {
+            state.errorLoadingPost = false;
+            state.loadingPosts = true;
+        }).addCase(fetchPosts.fulfilled, (state, {payload: posts}) => {
+            state.loadingPosts = false;
+            state.posts = posts;
+        }).addCase(fetchPosts.rejected, (state) => {
+            state.errorLoadingPost = true;
+            state.loadingPosts = false;
+        });
 
+        builder.addCase(fetchOnePost.pending, (state) => {
+            state.errorLoadingOnePost = false;
+            state.loadingOnePost = true;
+        }).addCase(fetchOnePost.fulfilled, (state, {payload: post}) => {
+            state.loadingOnePost = false;
+            state.onePost = post;
+        }).addCase(fetchOnePost.rejected, (state) => {
+            state.errorLoadingOnePost = true;
+            state.loadingOnePost = false;
+        });
+
+        builder.addCase(createPost.pending, (state) => {
+            state.errorCreating = false;
+            state.isCreating = true;
+        }).addCase(createPost.fulfilled, (state) => {
+            state.isCreating = false;
+        }).addCase(createPost.rejected, (state) => {
+            state.errorCreating = true;
+            state.isCreating = false;
+        });
     },
     selectors: {
         selectPosts: (state) => state.posts,

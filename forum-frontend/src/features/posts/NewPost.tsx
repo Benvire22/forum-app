@@ -5,11 +5,13 @@ import {PostMutation} from "../../types";
 import { Navigate } from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {selectUser} from "../users/usersSlice";
+import {selectCreatingPost} from "./postsSlice";
+import {createPost} from "./postsThunks";
 
 const NewPost = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isCreating = useAppSelector(selectPostCreating);
+  const isCreating = useAppSelector(selectCreatingPost);
   const user = useAppSelector(selectUser);
 
   const onFormSubmit = async (postMutation: PostMutation) => {
@@ -17,7 +19,7 @@ const NewPost = () => {
       await dispatch(createPost(postMutation)).unwrap();
       navigate('/');
     } catch (error) {
-      // handle error
+      console.error(error);
     }
   };
 
