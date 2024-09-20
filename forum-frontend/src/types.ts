@@ -1,38 +1,19 @@
 
-export interface Artist {
+export interface Post {
   _id: string;
-  name: string;
-  photo: string | null;
-  description: string;
-}
-
-export interface Album {
-  _id: string;
-  artist: {
+  title: string
+  user: {
     _id: string;
-    name: string;
-  };
-  name: string;
-  releaseDate: number;
+    username: string;
+  }
+  description: string;
   image: string | null;
 }
 
-export interface Track {
-  _id: string;
-  album: string;
-  name: string;
-  length: string;
-  number: number;
-}
-
-export interface TrackHistory {
-  _id: string;
-  track: Track;
-  artist: {
-    _id: string;
-    name: string;
-  }
-  datetime: Date;
+export interface PostMutation {
+  title: string
+  description: string;
+  image: string | null;
 }
 
 export interface RegisterMutation {

@@ -2,15 +2,17 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { usersReducer } from '../features/users/usersSlice';
 import { persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistStore } from 'redux-persist';
+import {postsReducer} from "../features/posts/postsSlice";
 
 const usersPersistConfig = {
-  key: 'music-app:users',
+  key: 'forum:users',
   storage,
   whitelist: ['user'],
 };
 
 const rootReducer = combineReducers({
   users: persistReducer(usersPersistConfig, usersReducer),
+  posts: postsReducer,
 });
 
 export const store = configureStore({

@@ -30,7 +30,7 @@ const UserMenu: React.FC<Props> = ({ user }) => {
       </Button>
       <Menu open={isOpen} onClose={handleClose} anchorEl={anchorEl} keepMounted>
         <MenuItem onClick={handleClose} component={NavLink} to="/posts/add-new">
-          Create new
+          add new Post
         </MenuItem>
         <MenuItem>My account</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
