@@ -10,7 +10,11 @@ const commentsRouter = express.Router();
 
 commentsRouter.get('/', async (req, res, next) => {
     try {
-        const post = req.params.post;
+        const post = req.query.post;
+
+        if (!post || !mongoose.isValidObjectId(post)) {
+            return res.status(404).send({error: 'Post not found!'})
+        }
 
         const comments = await Post.find({ post }).populate('user', 'username');
 

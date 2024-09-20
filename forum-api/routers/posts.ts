@@ -19,6 +19,10 @@ postsRouter.get('/', async (req, res, next) => {
 
 postsRouter.get('/:id', async (req, res, next) => {
     try {
+        if (!mongoose.isValidObjectId(req.params.id)) {
+            return res.status(401).send({ error: 'Invalid post ID!' });
+        }
+
         const post = await Post.findById(req.params.id).populate('user', 'username');
 
         if (!post) {
